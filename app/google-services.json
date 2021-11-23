@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "631058956811",
+    "project_id": "word-finder-943a4",
+    "storage_bucket": "word-finder-943a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631058956811:android:73717e53488d2346a33d0e",
+        "android_client_info": {
+          "package_name": "com.example.word_finder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "631058956811-cuqrtbgcur50237gpa0sahah6o7u8104.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.word_finder",
+            "certificate_hash": "d6e404420931287dd5744a68d1c7d304bd7e5208"
+          }
+        },
+        {
+          "client_id": "631058956811-l8is7qtrleelfh8ojmd7sqsaleg1id4k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUon-jbXbSdcNHaRdYOcGwwHH3xfC9ZuQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "631058956811-l8is7qtrleelfh8ojmd7sqsaleg1id4k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
