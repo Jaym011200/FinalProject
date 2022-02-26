@@ -1,95 +1,73 @@
 package com.example.word_finder;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity3 extends AppCompatActivity {
 
-    EditText editTextSearch;
-    Button btnSearch;
-    TextView textViewResults;
-    private Button btnlogout;
+    String url;
+    private TextView showDef;
+    private EditText enterWord;
+    ImageButton btnSearch;
+    Button btnlogout;
+    Button btnmore;
+
     private FirebaseAuth mAuth;
-    private Button add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
 
-     editTextSearch = (EditText) findViewById(R.id.editTextSearch);
-     btnSearch = (Button) findViewById(R.id.btnSubmit);
-     textViewResults = (TextView) findViewById(R.id.textViewResults);
+        showDef = findViewById(R.id.showDef);
+        btnSearch = (ImageButton) findViewById(R.id.btnSubmit);
+        enterWord = findViewById(R.id.enterWord);
+        btnlogout = findViewById(R.id.logout);
+        btnmore = findViewById(R.id.more);
 
-     btnlogout = findViewById(R.id.logout);
-     mAuth = FirebaseAuth.getInstance();
-     add = findViewById(R.id.add);
+        mAuth = FirebaseAuth.getInstance();
 
+        btnmore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity3.this , MainActivity5.class));
+            }
+        });
+        btnlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-     btnlogout.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
+                mAuth.signOut();
+                startActivity(new Intent(MainActivity3.this , MainActivity.class));
+                finish();
+            }
+        });
+    }
 
-             mAuth.signOut();
-             startActivity(new Intent(MainActivity3.this , MainActivity.class));
-             finish();
-         }
-     });
+    private String dictionaryEntries()
+    {
+        final String language = "en-gb";
+        final String word = enterWord.getText().toString();
+        final String fields = "definitions";
+        final String strictMatch = "false";
+        final String word_id = word.toLowerCase();
+        return "https://od-api.oxforddictionaries.com:443/api/v2/entries/" + language + "/" + word_id + "?" + "fields=" + fields + "&strictMatch=" + strictMatch;
+    }
 
-
-     btnSearch.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-             if (TextUtils.isEmpty(editTextSearch.getText().toString()))
-             {
-                 Toast.makeText(MainActivity3.this, "No empty keyboard allowed", Toast.LENGTH_SHORT).show();
-             }
-             else
-             {
-                 DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("meaning");
-                 mRef.addValueEventListener(new ValueEventListener() {
-                     @Override
-                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                         String searchKeyword = editTextSearch.getText().toString();
-                        if (dataSnapshot.child(searchKeyword).exists())
-                        {
-                            textViewResults.setText(dataSnapshot.child(searchKeyword).getValue().toString());
-                        }else
-                        {
-                            Toast.makeText(MainActivity3.this, "No search results found", Toast.LENGTH_SHORT).show();
-                        }
-                     }
-
-                     @Override
-                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                     }
-                 });
-             }
-         }
-     });
-     add.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-             startActivity(new Intent(MainActivity3.this , MainActivity4.class));
-         }
-     });
-
+    public void sendRequestOnClick(View v)
+    {
+        DictionaryRequest dR = new DictionaryRequest(this, showDef);
+        url = dictionaryEntries();
+        dR.execute(url);
     }
 }
+

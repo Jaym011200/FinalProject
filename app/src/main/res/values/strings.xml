@@ -1,3 +1,32 @@
 <resources>
-    <string name="app_name">Word_Finder</string>
+    <string name="app_name">Word Finder</string>
+    <string name="add_word">Add word...</string>
+    <string name="add_meaning">Add meaning...</string>
+    <string name="add">ADD</string>
+    <string name="back">BACK</string>
+    <string name="find_word">Find Word</string>
+    <string name="list_of_words">List of words</string>
+    <string name="map">Map</string>
+    <string name="todo">TODO</string>
+    <string name="search_word">    Search Word</string>
+    <string name="log_out">Log out</string>
+    <string name="add_words">Add Words</string>
+    <string name="more">More</string>
+    <string name="btnSearch">SEARCH</string>
+    <string name="log_in">LOG IN</string>
+    <string name="password">Password</string>
+    <string name="new_here_create_account">New Here? Create Account</string>
+    <string name="date">Date</string>
+    <string name="registered">Already Registered? Login Here</string>
+    <string name="register">REGISTER</string>
+    <string name="email">Email</string>
+    <string name="create_account">Create Account</string>
+    <string name="quiz">quiz</string>
+    <string name="question">Question text</string>
+    <string name="note">Note</string>
+    <string name="title">Title</string>
+    <string name="enter_title">Enter Title</string>
+    <string name="enter_note">Enter Note</string>
+    <string name="trivia">Fun Facts and Trivia</string>
+    <string name="about">About Us</string>
 </resources>
